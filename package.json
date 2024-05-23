@@ -1,0 +1,42 @@
+{
+  "name": "outer-heaven",
+  "version": "1.0.0",
+  "description": "A node js application designed to follow the programming technique of dependency injection (DI) ",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "predev": "npm install",
+    "dev": "nodemon index.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "node",
+    "injection",
+    "dependency",
+    "awilix",
+    "sequelize"
+  ],
+  "author": "Rommel Soriano",
+  "license": "ISC",
+  "dependencies": {
+    "awilix": "^10.0.2",
+    "awilix-express": "^9.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "sequelize": "^6.37.3",
+    "uuid": "^9.0.1",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.12",
+    "@types/uuid": "^9.0.8",
+    "@types/winston": "^2.4.4",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
