@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 
 const config = require("./db.config")[process.env.NODE_ENV || "development"];
 
