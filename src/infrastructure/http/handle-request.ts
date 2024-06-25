@@ -13,9 +13,8 @@ export default function handleRequest(
 ): ControllerFunction {
   return async (req: Request, res: Response, next: NextFunction) => {
     const controller = container.resolve(controllerName);
-    const method = controller[methodName];
     try {
-      await method(req, res, next);
+      await controller[methodName](req, res);
     } catch (error) {
       next(error);
     }

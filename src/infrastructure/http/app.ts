@@ -5,7 +5,8 @@ import { scopePerRequest } from "awilix-express";
 import container from "../providers/app-provider";
 import Logger from "../../shared/utils/logger";
 import sequelize from "../database/db-connection";
-import routes from "../../features/routes";
+import routes from "../../routes";
+import "reflect-metadata";
 
 config();
 
