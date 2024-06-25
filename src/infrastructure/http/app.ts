@@ -5,6 +5,7 @@ import { scopePerRequest } from "awilix-express";
 import container from "../providers/app-provider";
 import Logger from "../../shared/utils/logger";
 import sequelize from "../database/db-connection";
+import routes from "../../features/routes";
 
 config();
 
@@ -32,6 +33,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(scopePerRequest(container));
+
+app.use("/api/v1/", routes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send({ message: "Hello World!" });
