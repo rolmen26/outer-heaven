@@ -1,10 +1,10 @@
-import { UserDto } from "../dtos/userDto";
+import { CreateUserDto } from "../dtos/createUserDto";
 
 export class CreateUserCommand {
   public name: string;
   public email: string;
 
-  constructor(dto: UserDto) {
+  constructor(dto: CreateUserDto) {
     this.name = dto.name;
     this.email = dto.email;
   }

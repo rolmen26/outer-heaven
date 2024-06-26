@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { CreateUserHandler } from "../handlers/addNewUserHandler";
-import { CreateUserCommand } from "../commands/addNewUserCommand";
-import { UserDto } from "../dtos/userDto";
+import { CreateUserHandler } from "../handlers/createUserHandler";
+import { CreateUserCommand } from "../commands/createUserCommand";
+import { CreateUserDto } from "../dtos/createUserDto";
 import Logger from "../../../shared/utils/logger";
 
-export class UserHttpController {
+export class CreateUserHttpController {
   private handler: CreateUserHandler;
 
   private logger: Logger;
@@ -16,12 +16,15 @@ export class UserHttpController {
 
   async handle(req: Request, res: Response): Promise<void> {
     try {
-      const dto: UserDto = req.body;
+      const dto: CreateUserDto = req.body;
       const command = new CreateUserCommand(dto);
 
-      await this.handler.handle(command);
+      const user = await this.handler.handle(command);
 
-      res.status(201).send("User created successfully");
+      res.status(201).json({
+        message: 'User created successfully',
+        userUuid: user.uuid,
+      });
     } catch (error: any) {
       this.logger.error(error.message);
       res.status(500).json({ error: error.message });

@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from "uuid";
 
 @Table({
   tableName: "users",
+  underscored: true,
+  timestamps: false,
 })
 export class User extends Model {
   @PrimaryKey
@@ -43,13 +45,25 @@ export class User extends Model {
   email!: string;
 
   @Column({
-    type: DataType.BOOLEAN,
-    defaultValue: true,
+    type: DataType.DATE,
     allowNull: false,
+    defaultValue: DataType.NOW,
   })
-  isActive!: boolean;
+  createdAt!: Date;
 
-  static instanceNewUser(name: string, email: string) {
+  @Column({
+    type: DataType.DATE,
+    allowNull: true,
+  })
+  updatedAt!: Date;
+
+  @Column({
+    type: DataType.DATE,
+    allowNull: true,
+  })
+  deletedAt!: Date;
+
+  static instanceNewUser(name: string, email: string): User {
     return this.build({
       name,
       email,
