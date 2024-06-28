@@ -1,6 +1,6 @@
 import { asClass, createContainer, InjectionMode } from "awilix";
 import Logger from "../../shared/utils/logger";
-import { registerUserModule } from "../../features/users";
+import { registerUserModule } from "../../features/user";
 
 const container = createContainer({
     injectionMode: InjectionMode.CLASSIC

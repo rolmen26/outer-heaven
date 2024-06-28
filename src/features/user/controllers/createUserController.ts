@@ -14,20 +14,23 @@ export class CreateUserHttpController {
     this.logger = logger;
   }
 
-  async handle(req: Request, res: Response): Promise<void> {
+  async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const dto: CreateUserDto = req.body;
-      const command = new CreateUserCommand(dto);
-
+      const createUserDto: CreateUserDto = {
+        name: req.body.name,
+        email: req.body.email,
+      };
+      const command = new CreateUserCommand(createUserDto);
       const user = await this.handler.handle(command);
-
-      res.status(201).json({
-        message: 'User created successfully',
-        userUuid: user.uuid,
+      return res.status(201).json({
+        'message': 'User created successfully',
       });
     } catch (error: any) {
-      this.logger.error(error.message);
-      res.status(500).json({ error: error.message });
+      this.logger.error(error);
+      return res.status(500).json({
+        'error': error.message,
+      });
     }
   }
 }
+
